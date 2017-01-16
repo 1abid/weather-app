@@ -1,9 +1,13 @@
 package com.example.android.sunshine.app.mainactivity.mvp;
 
 import android.content.Context;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.sunshine.app.mainactivity.view.MainActivity;
+import com.example.android.sunshine.app.mainactivity.view.recycler.WeatherFeedViewHolder;
+
+import java.util.ArrayList;
 
 /**
  * Created by VutkaBilai on 1/15/17.
@@ -36,7 +40,10 @@ public interface MainMVP {
     interface ProvidedPresenterOps{
         void onDestroy(boolean isChangingConfigurations);
         void setView(REquiredViewOps view);
-        void setText(TextView tv);
+
+        WeatherFeedViewHolder createViewHolder(ViewGroup container , int viewType);
+        void bindViewHolder(WeatherFeedViewHolder holder , int position);
+        int getItemCount();
     }
 
 
@@ -60,6 +67,7 @@ public interface MainMVP {
     interface ProvidedModelOps{
         void onDestroy(boolean isChangingConfigurations);
 
-        String getString();
+        ArrayList<String> getDummyWeatherFeeds();
+
     }
 }

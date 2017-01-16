@@ -1,9 +1,14 @@
 package com.example.android.sunshine.app.mainactivity.presenter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.android.sunshine.app.R;
 import com.example.android.sunshine.app.mainactivity.mvp.MainMVP;
+import com.example.android.sunshine.app.mainactivity.view.recycler.WeatherFeedViewHolder;
 
 import java.lang.ref.WeakReference;
 
@@ -60,9 +65,40 @@ public class MainPresenter implements MainMVP.RequiredPresenterOps,MainMVP.Provi
         mView = new WeakReference<MainMVP.REquiredViewOps>(view);
     }
 
+
+    /**
+     * Create the RecyclerView holder and setup its view
+     * @param container
+     * @param viewType
+     * @return
+     */
     @Override
-    public void setText(TextView tv) {
-        tv.setText(mModel.getString());
+    public WeatherFeedViewHolder createViewHolder(ViewGroup container, int viewType) {
+
+        WeatherFeedViewHolder viewHolder ;
+        LayoutInflater inflater = LayoutInflater.from(container.getContext());
+
+        View feedRow = inflater.inflate(R.layout.list_item_forecast , container , false);
+        viewHolder = new WeatherFeedViewHolder(feedRow);
+
+
+
+        return viewHolder;
+    }
+
+    /**
+     * Binds ViewHolder with RecyclerView
+     * @param holder
+     * @param position
+     */
+    @Override
+    public void bindViewHolder(WeatherFeedViewHolder holder, int position) {
+        holder.feedTv.setText(mModel.getDummyWeatherFeeds().get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return mModel.getDummyWeatherFeeds().size();
     }
 
 

@@ -3,6 +3,9 @@ package com.example.android.sunshine.app.mainactivity.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.android.sunshine.app.R;
@@ -10,12 +13,12 @@ import com.example.android.sunshine.app.mainactivity.Common.StateMaintainer;
 import com.example.android.sunshine.app.mainactivity.model.MainModel;
 import com.example.android.sunshine.app.mainactivity.mvp.MainMVP;
 import com.example.android.sunshine.app.mainactivity.presenter.MainPresenter;
+import com.example.android.sunshine.app.mainactivity.view.recycler.WeatherFeedAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements MainMVP.REquiredViewOps{
 
-
-    private TextView tv;
+    private WeatherFeedAdapter mAdapter;
 
 
     private MainMVP.ProvidedPresenterOps mPresenter;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.REquiredV
         setUpViews();
         setUpMvp();
 
-        mPresenter.setText(tv);
+
     }
 
 
@@ -85,7 +88,14 @@ public class MainActivity extends AppCompatActivity implements MainMVP.REquiredV
      */
     private void setUpViews(){
 
-        tv = (TextView) findViewById(R.id.demo_tv);
+        RecyclerView mList = (RecyclerView) findViewById(R.id.list_feeds);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( this );
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        mList.setLayoutManager(linearLayoutManager);
+        mAdapter = new WeatherFeedAdapter(mPresenter);
+        mList.setAdapter(mAdapter);
+        mList.setItemAnimator(new DefaultItemAnimator());
 
 
     }
