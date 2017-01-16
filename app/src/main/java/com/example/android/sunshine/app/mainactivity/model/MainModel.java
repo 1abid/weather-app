@@ -29,6 +29,8 @@ public class MainModel implements MainMVP.ProvidedModelOps {
 
     public MainModel(MainMVP.RequiredPresenterOps mPresenter) {
         this.mPresenter = mPresenter;
+
+        weatherfeeds = getDummyWeatherFeeds();
     }
 
     @Override
@@ -46,7 +48,10 @@ public class MainModel implements MainMVP.ProvidedModelOps {
         return weatherfeeds;
     }
 
-
+    @Override
+    public int getFeedCount() {
+        return  weatherfeeds.size() ;
+    }
 
 
 }

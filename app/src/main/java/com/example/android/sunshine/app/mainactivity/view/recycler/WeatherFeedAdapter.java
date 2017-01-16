@@ -22,18 +22,18 @@ public class WeatherFeedAdapter extends RecyclerView.Adapter<WeatherFeedViewHold
 
     @Override
     public WeatherFeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return mPresenter.createViewHolder(parent , viewType);
     }
 
 
     @Override
     public void onBindViewHolder(WeatherFeedViewHolder holder, int position) {
-
+        mPresenter.bindViewHolder(holder , position);
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPresenter.getItemCount();
     }
 }

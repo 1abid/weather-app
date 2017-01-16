@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainMVP.REquiredV
         setContentView(R.layout.activity_main);
 
         setUpViews();
-        setUpMvp();
 
 
     }
@@ -93,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.REquiredV
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         mList.setLayoutManager(linearLayoutManager);
+        setUpMvp();
         mAdapter = new WeatherFeedAdapter(mPresenter);
         mList.setAdapter(mAdapter);
         mList.setItemAnimator(new DefaultItemAnimator());

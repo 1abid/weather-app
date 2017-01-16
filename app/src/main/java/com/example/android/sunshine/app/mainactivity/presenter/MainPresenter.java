@@ -98,7 +98,7 @@ public class MainPresenter implements MainMVP.RequiredPresenterOps,MainMVP.Provi
 
     @Override
     public int getItemCount() {
-        return mModel.getDummyWeatherFeeds().size();
+        return mModel.getFeedCount() ;
     }
 
 

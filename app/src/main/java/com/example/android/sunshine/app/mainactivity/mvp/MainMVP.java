@@ -69,5 +69,7 @@ public interface MainMVP {
 
         ArrayList<String> getDummyWeatherFeeds();
 
+        int getFeedCount();
+
     }
 }
